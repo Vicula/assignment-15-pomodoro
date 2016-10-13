@@ -110,13 +110,13 @@ var startTimer = function(){
 
          }, 1000);
       } else {
-         console.log('give me a task')
+         
          pomoAlertText.textContent = "Give me a task!"
          alertBoxFun()
       }
    } else {
       //THROW AN ERROR
-      console.log('im already working')
+
       pomoAlertText.textContent = "I'm already working!"
       alertBoxFun()
    }
