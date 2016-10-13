@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box; }
+
+img {
+  width: 100%;
+  display: block; }
+
+body {
+  margin: 0;
+  font-family: 'Taviraj', serif; }
+
+#app-container {
+  max-width: 960px; }
+  #app-container .pomo-head {
+    background: gray; }
+    #app-container .pomo-head .pomo-timer {
+      color: RGBA(232, 126, 4, 1); }
+    #app-container .pomo-head .pomo-head-but {
+      background: RGBA(34, 49, 63, 1);
+      border-color: RGBA(103, 128, 159, 1); }
+  #app-container .pomo-middle-holder {
+    padding: auto 30%;
+    border: none; }
+    #app-container .pomo-middle-holder .pomo-middle {
+      width: 100%;
+      border: none;
+      border-bottom: 2.5px RGBA(34, 49, 63, 1) solid; }
+      #app-container .pomo-middle-holder .pomo-middle .pomo-middle-input {
+        width: 100%;
+        border: none;
+        height: 100%; }
+      #app-container .pomo-middle-holder .pomo-middle .pomo-middle-input:focus {
+        outline: none;
+        font-size: 24px; }
+      #app-container .pomo-middle-holder .pomo-middle .pomo-middle-but {
+        background: RGBA(34, 49, 63, 1);
+        border-color: RGBA(103, 128, 159, 1);
+        color: #fff;
+        font-size: 20px;
+        width: 20%;
+        height: 100%;
+        border-bottom: none;
+        border-radius: 0; }
+  #app-container .pomo-bottom-holder .pomo-bottom-list {
+    border: 3px solid #555;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0; }
+    #app-container .pomo-bottom-holder .pomo-bottom-list li {
+      list-style: none;
+      margin: 0;
+      padding: 10px 6px;
+      text-align: left;
+      position: relative; }
+      #app-container .pomo-bottom-holder .pomo-bottom-list li div {
+        position: absolute;
+        top: 5%;
+        right: 5px;
+        padding: 0; }
+        #app-container .pomo-bottom-holder .pomo-bottom-list li div span {
+          text-align: center;
+          width: 40px;
+          height: 90%;
+          color: #333;
+          border: 0;
+          margin: 0;
+          padding-top: 7px; }
+    #app-container .pomo-bottom-holder .pomo-bottom-list li:nth-child(even) {
+      background: #E08283; }
+
+/*# sourceMappingURL=styles.css.map */
