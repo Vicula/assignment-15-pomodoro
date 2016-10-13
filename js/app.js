@@ -301,9 +301,10 @@ var restoreTask = function(nameStr) {
 }
 
 var alertBoxFun = function(){
-   // if (hasTask === ''){
-   //    pomoAlertText.textContent = 'Give me something to do below'
-   // }
+
+   if (pomoTitle.textContent === 'Pomodoro'){
+      pomoAlertText.textContent = 'Give me something to do below'
+   }
 
    pomoAlert.style.right = '0';
 
