@@ -8,10 +8,38 @@ img {
 body {
    margin: 0;
    font-family: 'Taviraj', serif;
+   overflow: hidden;
 }
 
 #app-container{
    max-width: 960px;
+
+
+
+   .alertBox{
+      position: absolute;
+      right: -100%;
+      top: 0;
+      padding-top: 20px;
+      background: #52B3D9;
+      overflow: hidden;
+
+      span{
+         color: #fff;
+         display: inline-block;
+         font-size: 24px;
+         padding: 0 10px;
+      }
+
+      h4{
+         text-align: center;
+         padding-bottom: 15px;
+         color: #fff;
+         display: inline-block;
+         font-size: 24px;
+         margin-right: 20px;
+      }
+   }
 
    .pomo-head{
       background: gray;

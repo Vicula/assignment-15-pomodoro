@@ -5,9 +5,11 @@ var pomoInput = document.querySelector('.pomo-middle-input')
 var pomoBut = document.querySelector('.pomo-middle-but')
 var pomoHolder = document.querySelector('.pomo-head')
 var pomoList = document.querySelector('.pomo-bottom-list')
+var pomoAlert = document.querySelector('.alertBox')
+var pomoAlertText = document.querySelector('.alertBoxText')
 
 var sec = 00
-var min = 2
+var min = 25
 var timeStrg = ''
 var isRunning = false
 var hasTask = ''
@@ -18,6 +20,7 @@ var butTog = false
 pomoHolder.style.transition = 'all 2s'
 pomoTitle.style.transition = 'all 1s'
 pomoTimer.style.transition = 'all 1s'
+pomoAlert.style.transition = 'all 0.75s'
 
 
 
@@ -36,6 +39,7 @@ var clearTopFun = function(){
    console.log('im clean')
    isRunning = false
    secondTime = false
+   earlyLooking = false
 
 
 }
@@ -104,13 +108,17 @@ var startTimer = function(){
 
 
 
-         }, 100);
+         }, 1000);
       } else {
          console.log('give me a task')
+         pomoAlertText.textContent = "Give me a task!"
+         alertBoxFun()
       }
    } else {
       //THROW AN ERROR
       console.log('im already working')
+      pomoAlertText.textContent = "I'm already working!"
+      alertBoxFun()
    }
 }
 
@@ -120,6 +128,9 @@ var pomo25Count = function(){
       sec = 00
       min = 25
       startTimer()
+   } else if (earlyLooking === true){
+      clearTopFun()
+
    }else {
       clearButAct()
       isRunning = false
@@ -127,25 +138,38 @@ var pomo25Count = function(){
 }
 
 var anotherThing = function(){
-   var taskHldr = pomoInput.value
-   var newLiNode = document.createElement('li')
-   newLiNode.textContent = taskHldr
-   var newTrashNode = document.createElement('span')
-   newTrashNode.classList = "glyphicon glyphicon-trash listBut"
-   var newPlayNode = document.createElement('span')
-   newPlayNode.classList = "glyphicon glyphicon-play listBut"
-   var newButHolder = document.createElement('div')
+   if (hasTask = ''){
+      pomoAlertText.textContent = 'Give me a task!'
+      alertBoxFun()
+   } else {
+      if (pomoInput.value === '') {
+         pomoAlertText.textContent = 'Give me a task!'
+      } else {
+         pomoAlertText.textContent = 'Stored...'
+         alertBoxFun()
+         var taskHldr = pomoInput.value
+         var newLiNode = document.createElement('li')
+         newLiNode.textContent = taskHldr
+         var newTrashNode = document.createElement('span')
+         newTrashNode.classList = "glyphicon glyphicon-trash listBut"
+         var newPlayNode = document.createElement('span')
+         newPlayNode.classList = "glyphicon glyphicon-play listBut"
+         var newButHolder = document.createElement('div')
 
-   newButHolder.appendChild(newPlayNode)
-   newButHolder.appendChild(newTrashNode)
+         newButHolder.appendChild(newPlayNode)
+         newButHolder.appendChild(newTrashNode)
 
-   newLiNode.appendChild(newButHolder)
+         newLiNode.appendChild(newButHolder)
 
-   pomoInput.value = ''
-   pomoList.appendChild(newLiNode)
+         pomoInput.value = ''
+         pomoList.appendChild(newLiNode)
 
-   newTrashNode.addEventListener('click', remvThis)
-   newPlayNode.addEventListener('click', startBTimer )
+         newTrashNode.addEventListener('click', remvThis)
+         newPlayNode.addEventListener('click', startBTimer )
+      }
+
+   }
+
 }
 
 var newPomodor = function(evt){
@@ -155,11 +179,12 @@ var newPomodor = function(evt){
    if(evt.keyCode === 13 || evt.type === 'click'){
 
       if ( task === '') {
-
+         pomoAlertText.textContent = 'Give me a task!'
+         alertBoxFun()
 
 
       } else if (isRunning === false){
-
+                  pomoAlertText.textContent = 'Give me something to do below'
                   hasTask = task
                   pomoInput.value = ''
                   pomoInput.placeholder = 'Rename Current Task?'
@@ -167,8 +192,13 @@ var newPomodor = function(evt){
 
 
 
+      } else if (evt.type === 'click'){
+         pomoAlertText.textContent = 'Stored...'
+         alertBoxFun()
       }else {
          console.log('im already working')
+         pomoAlertText.textContent = "I'll store that for you.."
+         alertBoxFun()
          // THIS IS WHERE YOU ARE GOIN TO PUSH TO THE LIST BELOW
          // AT THE LEAST JUST CALL THE FUNCTION HERE AND MAKE IT SOMEWHERE ELSE
          var newLiNode = document.createElement('li')
@@ -197,19 +227,26 @@ var newPomodor = function(evt){
 }
 
 var remvThis = function(){
-   console.log(this)
+
    var first = this.parentElement
    var final = first.parentElement
    pomoList.removeChild(final)
+   pomoAlertText.textContent = "And it is gone..."
+   alertBoxFun()
 }
 
 var startBTimer = function(){
 
    if (isRunning === true){
       // THIS IS WHERE YOU WILL THROW THE ERROR
+      pomoAlertText.textContent = "I'm already working!"
+      alertBoxFun()
    } else if (pomoTitle.textContent != 'Pomodoro') {
 
+
       var nameHolder = pomoTitle.textContent
+
+      // pomoInput.placeholder = 'Rename Current Task?'
 
       restoreTask(nameHolder)
 
@@ -220,6 +257,7 @@ var startBTimer = function(){
       pomoList.removeChild(funFunction)
 
    }else {
+      pomoInput.placeholder = 'Rename Current Task?'
       var another = this.parentElement
       var funFunction = another.parentElement
       hasTask = funFunction.textContent
@@ -234,7 +272,7 @@ var clearButAct = function(){
    isRunning = false
    min = 00
    sec = 00
-   clearTopFun()
+   // clearTopFun()
    hasTask = ''
 
 
@@ -262,10 +300,24 @@ var restoreTask = function(nameStr) {
 
 }
 
+var alertBoxFun = function(){
+   if (hasTask === ''){
+      pomoAlertText.textContent = 'Give me something to do below'
+   }
+
+   pomoAlert.style.right = '0';
+
+   setTimeout(function(){
+      pomoAlert.style.transition = 'all 2s'
+      pomoAlert.style.right = '-100%'
+   }, 5000);
+}
+
 
 
 
 
 pomoStarter.addEventListener('click', pomo25Count)
 pomoInput.addEventListener('keypress', newPomodor)
+pomoInput.addEventListener('click', alertBoxFun)
 pomoBut.addEventListener('click', anotherThing)
