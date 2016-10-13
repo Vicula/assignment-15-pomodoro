@@ -110,7 +110,7 @@ var startTimer = function(){
 
          }, 1000);
       } else {
-         
+
          pomoAlertText.textContent = "Give me a task!"
          alertBoxFun()
       }
@@ -301,9 +301,9 @@ var restoreTask = function(nameStr) {
 }
 
 var alertBoxFun = function(){
-   if (hasTask === ''){
-      pomoAlertText.textContent = 'Give me something to do below'
-   }
+   // if (hasTask === ''){
+   //    pomoAlertText.textContent = 'Give me something to do below'
+   // }
 
    pomoAlert.style.right = '0';
 
