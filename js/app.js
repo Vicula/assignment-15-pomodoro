@@ -26,6 +26,7 @@ var clearTopFun = function(){
    pomoHolder.style.backgroundColor = 'gray';
    pomoTitle.style.color = '#333';
    pomoTimer.style.color = '#e87e04';
+   hasTask = ''
 }
 
 var startTimer = function(){
@@ -41,8 +42,7 @@ var startTimer = function(){
                isRunning = false
                clearInterval(pomoCounter)
                clearTopFun()
-               console.log('top')
-               console.log(isRunning)
+               hasTask = ''
             })
          }
 
@@ -75,7 +75,8 @@ var startTimer = function(){
             var resetPomo = function(){
                pomoTitle.textContent = 'Done!'
                pomoTimer.textContent = 'Do another?'
-               
+               hasTask = ''
+
                setTimeout(function(){
                   clearTopFun()
                }, 5000);
